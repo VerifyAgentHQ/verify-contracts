@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0.0",
+  "target": {
+    "provider": "source-control",
+    "reference": "https://example.invalid/acme/demo"
+  },
+  "sourceState": { "type": "commit", "value": "abc123def456" },
+  "options": { "ruleset": "default" }
+}

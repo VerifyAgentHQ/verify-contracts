@@ -1,0 +1,42 @@
+{
+  "verificationId": "verification-001",
+  "schemaVersion": "1.0.0",
+  "target": {
+    "provider": "source-control",
+    "reference": "https://example.invalid/acme/demo"
+  },
+  "sourceState": { "type": "commit", "value": "abc123def456" },
+  "status": "needs_changes",
+  "summary": "One high-severity issue requires attention.",
+  "findings": [
+    {
+      "id": "finding-001",
+      "severity": "high",
+      "title": "Unchecked input",
+      "description": "Input is used without validation.",
+      "status": "open",
+      "locations": [{ "path": "src/input.ts", "startLine": 12 }],
+      "evidenceReferences": ["evidence/report-001"],
+      "producer": {
+        "type": "analyzer",
+        "name": "example-checker",
+        "version": "1.0.0"
+      },
+      "confidence": 0.96
+    }
+  ],
+  "coverage": {
+    "verified": ["typescript.typecheck", "typescript.test"],
+    "partial": ["private.dependency-resolution"],
+    "unsupported": ["cpp.build"],
+    "notApplicable": []
+  },
+  "evidence": { "total": 1, "bySeverity": { "high": 1 } },
+  "policyDecision": {
+    "policyId": "default-policy",
+    "policyVersion": "1.0.0",
+    "outcome": "needs_changes",
+    "triggeredRuleIds": ["input-validation"]
+  },
+  "createdAt": "2026-08-31T10:00:00Z"
+}

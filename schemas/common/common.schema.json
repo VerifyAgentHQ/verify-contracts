@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/common/common.schema.json",
+  "title": "VerifyAgent common definitions",
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "Timestamp": { "type": "string", "format": "date-time" },
+    "Hash": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+    "SourceProvider": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "SourceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "reference"],
+      "properties": {
+        "provider": { "$ref": "#/$defs/SourceProvider" },
+        "reference": { "type": "string", "minLength": 1, "maxLength": 2048 }
+      }
+    },
+    "SourceState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": {
+        "type": { "type": "string", "enum": ["commit", "snapshot"] },
+        "value": { "type": "string", "minLength": 1, "maxLength": 256 }
+      }
+    },
+    "CapabilityList": {
+      "type": "array",
+      "maxItems": 1000,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 256 }
+    },
+    "JobStatus": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "running",
+        "completed",
+        "failed",
+        "timed_out",
+        "cancelled",
+        "error"
+      ]
+    },
+    "CheckStatus": {
+      "type": "string",
+      "enum": ["passed", "failed", "error", "timed_out", "cancelled", "skipped"]
+    },
+    "VerificationStatus": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "needs_review",
+        "needs_changes",
+        "blocked",
+        "partial",
+        "error"
+      ]
+    },
+    "PolicyOutcome": {
+      "type": "string",
+      "enum": ["allow", "needs_review", "needs_changes", "block"]
+    },
+    "SandboxStatus": {
+      "type": "string",
+      "enum": ["completed", "failed", "timed_out", "cancelled", "error"]
+    },
+    "FindingStatus": {
+      "type": "string",
+      "enum": ["open", "resolved", "dismissed", "superseded"]
+    },
+    "Severity": {
+      "type": "string",
+      "enum": ["info", "low", "medium", "high", "critical"]
+    },
+    "Provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "name"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "name": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "version": { "type": "string", "minLength": 1, "maxLength": 128 }
+      }
+    }
+  }
+}

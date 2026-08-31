@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/agent/agent-capability.schema.json",
+  "title": "AgentCapability",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["capabilityId", "name", "version", "description"],
+  "properties": {
+    "capabilityId": {
+      "$ref": "../common/common.schema.json#/$defs/Identifier"
+    },
+    "name": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "description": { "type": "string", "minLength": 1, "maxLength": 1024 }
+  }
+}

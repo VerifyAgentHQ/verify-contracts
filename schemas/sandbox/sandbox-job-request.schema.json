@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/sandbox/sandbox-job-request.schema.json",
+  "title": "SandboxJobRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "jobId",
+    "source",
+    "snapshot",
+    "commands",
+    "resourceLimits",
+    "networkPolicy",
+    "artifactPolicy"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "jobId": { "$ref": "../common/common.schema.json#/$defs/Identifier" },
+    "source": { "$ref": "../common/common.schema.json#/$defs/SourceReference" },
+    "snapshot": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "commands": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1, "maxLength": 4096 }
+    },
+    "resourceLimits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timeoutMs", "memoryLimitBytes"],
+      "properties": {
+        "timeoutMs": { "type": "integer", "minimum": 1 },
+        "memoryLimitBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1099511627776
+        }
+      }
+    },
+    "networkPolicy": {
+      "type": "string",
+      "enum": ["none", "restricted", "allowlist"]
+    },
+    "artifactPolicy": { "type": "string", "enum": ["none", "declared"] }
+  }
+}

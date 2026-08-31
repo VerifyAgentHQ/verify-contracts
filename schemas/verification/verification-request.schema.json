@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/verification/verification-request.schema.json",
+  "title": "VerificationRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "target", "sourceState"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "target": { "$ref": "../common/common.schema.json#/$defs/SourceReference" },
+    "sourceState": {
+      "$ref": "../common/common.schema.json#/$defs/SourceState"
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ruleset": { "type": "string", "minLength": 1, "maxLength": 128 }
+      }
+    }
+  }
+}

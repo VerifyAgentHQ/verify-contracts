@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/verification/coverage.schema.json",
+  "title": "Coverage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["verified", "partial", "unsupported", "notApplicable"],
+  "properties": {
+    "verified": {
+      "$ref": "../common/common.schema.json#/$defs/CapabilityList"
+    },
+    "partial": { "$ref": "../common/common.schema.json#/$defs/CapabilityList" },
+    "unsupported": {
+      "$ref": "../common/common.schema.json#/$defs/CapabilityList"
+    },
+    "notApplicable": {
+      "$ref": "../common/common.schema.json#/$defs/CapabilityList"
+    }
+  }
+}

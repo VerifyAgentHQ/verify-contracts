@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/agent/agent-service.schema.json",
+  "title": "AgentService",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "serviceId",
+    "name",
+    "endpoint",
+    "capabilities"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "serviceId": { "$ref": "../common/common.schema.json#/$defs/Identifier" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "endpoint": { "type": "string", "format": "uri", "maxLength": 2048 },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "agent-capability.schema.json" }
+    }
+  }
+}

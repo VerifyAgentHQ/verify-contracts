@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "serviceId": "service-001",
+  "name": "Example Verification Agent",
+  "endpoint": "https://agent.example.invalid/verify",
+  "capabilities": [
+    {
+      "capabilityId": "verification",
+      "name": "verification",
+      "version": "1.0.0",
+      "description": "Runs public verification jobs."
+    }
+  ]
+}

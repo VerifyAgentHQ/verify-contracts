@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/attestation/attestation.schema.json",
+  "title": "Attestation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "attestationId",
+    "verificationResultId",
+    "issuer",
+    "subject",
+    "issuedAt",
+    "payloadHash"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "attestationId": {
+      "$ref": "../common/common.schema.json#/$defs/Identifier"
+    },
+    "verificationResultId": {
+      "$ref": "../common/common.schema.json#/$defs/Identifier"
+    },
+    "issuer": { "$ref": "../common/common.schema.json#/$defs/Identifier" },
+    "subject": { "$ref": "../common/common.schema.json#/$defs/Identifier" },
+    "issuedAt": { "$ref": "../common/common.schema.json#/$defs/Timestamp" },
+    "payloadHash": { "$ref": "../common/common.schema.json#/$defs/Hash" }
+  }
+}

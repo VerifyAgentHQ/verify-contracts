@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/verification/verification-result.schema.json",
+  "title": "VerificationResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verificationId",
+    "schemaVersion",
+    "target",
+    "sourceState",
+    "status",
+    "summary",
+    "findings",
+    "coverage",
+    "policyDecision",
+    "createdAt"
+  ],
+  "properties": {
+    "verificationId": {
+      "$ref": "../common/common.schema.json#/$defs/Identifier"
+    },
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "target": { "$ref": "../common/common.schema.json#/$defs/SourceReference" },
+    "sourceState": {
+      "$ref": "../common/common.schema.json#/$defs/SourceState"
+    },
+    "status": {
+      "$ref": "../common/common.schema.json#/$defs/VerificationStatus"
+    },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 4096 },
+    "findings": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": { "$ref": "finding.schema.json" }
+    },
+    "coverage": { "$ref": "coverage.schema.json" },
+    "evidence": { "$ref": "evidence-summary.schema.json" },
+    "policyDecision": { "$ref": "policy-decision-summary.schema.json" },
+    "createdAt": { "$ref": "../common/common.schema.json#/$defs/Timestamp" }
+  }
+}

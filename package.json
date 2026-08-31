@@ -1,0 +1,25 @@
+{
+  "name": "verify-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Versioned public contracts and protocols for VerifyAgent.",
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "validate": "tsx scripts/validate-schemas.ts",
+    "test": "tsx --test tests/**/*.test.ts",
+    "check": "pnpm format:check && pnpm typecheck && pnpm validate && pnpm test"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "prettier": "^3.6.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.2"
+  }
+}

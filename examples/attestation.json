@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0.0",
+  "attestationId": "attestation-001",
+  "verificationResultId": "verification-001",
+  "issuer": "service-001",
+  "subject": "source-001",
+  "issuedAt": "2026-08-31T10:01:00Z",
+  "payloadHash": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+}

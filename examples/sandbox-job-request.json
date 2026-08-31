@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "jobId": "job-001",
+  "source": {
+    "provider": "source-control",
+    "reference": "https://example.invalid/acme/demo"
+  },
+  "snapshot": "abc123def456",
+  "commands": ["pnpm test"],
+  "resourceLimits": { "timeoutMs": 120000, "memoryLimitBytes": 536870912 },
+  "networkPolicy": "restricted",
+  "artifactPolicy": "declared"
+}

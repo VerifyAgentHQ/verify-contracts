@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/sandbox/sandbox-job-result.schema.json",
+  "title": "SandboxJobResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "jobId",
+    "status",
+    "durationMs",
+    "logsRef",
+    "artifactRefs",
+    "resourceUsage",
+    "errors"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "jobId": { "$ref": "../common/common.schema.json#/$defs/Identifier" },
+    "status": { "$ref": "../common/common.schema.json#/$defs/SandboxStatus" },
+    "exitCode": { "type": "integer" },
+    "durationMs": { "type": "integer", "minimum": 0 },
+    "logsRef": {
+      "type": "string",
+      "format": "uri-reference",
+      "maxLength": 2048
+    },
+    "artifactRefs": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "string",
+        "format": "uri-reference",
+        "maxLength": 2048
+      }
+    },
+    "resourceUsage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["memoryBytes", "cpuTimeMs"],
+      "properties": {
+        "memoryBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1099511627776
+        },
+        "cpuTimeMs": { "type": "integer", "minimum": 0, "maximum": 86400000 }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 4096 }
+    }
+  }
+}

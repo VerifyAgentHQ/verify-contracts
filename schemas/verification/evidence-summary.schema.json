@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/verification/evidence-summary.schema.json",
+  "title": "EvidenceSummary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["total", "bySeverity"],
+  "properties": {
+    "total": { "type": "integer", "minimum": 0 },
+    "bySeverity": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    }
+  }
+}

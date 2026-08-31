@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/verification/policy-decision-summary.schema.json",
+  "title": "PolicyDecisionSummary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policyId", "policyVersion", "outcome", "triggeredRuleIds"],
+  "properties": {
+    "policyId": { "$ref": "../common/common.schema.json#/$defs/Identifier" },
+    "policyVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "outcome": { "$ref": "../common/common.schema.json#/$defs/PolicyOutcome" },
+    "triggeredRuleIds": {
+      "type": "array",
+      "maxItems": 1000,
+      "uniqueItems": true,
+      "items": { "$ref": "../common/common.schema.json#/$defs/Identifier" }
+    }
+  }
+}
