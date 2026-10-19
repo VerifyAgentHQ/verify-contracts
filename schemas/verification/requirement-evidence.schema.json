@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.verifyagent.dev/schemas/verification/requirement-evidence.schema.json",
+  "title": "RequirementEvidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidenceId",
+    "requirementId",
+    "source",
+    "requirementText",
+    "rule",
+    "status",
+    "explanation",
+    "matchedFiles",
+    "locations",
+    "observedText",
+    "evidenceHash"
+  ],
+  "properties": {
+    "evidenceId": { "$ref": "../common/common.schema.json#/$defs/Identifier" },
+    "requirementId": {
+      "$ref": "../common/common.schema.json#/$defs/Identifier"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "owner", "repository", "number", "field"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["pull_request", "issue"] },
+        "owner": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "repository": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "number": { "type": "integer", "minimum": 1 },
+        "field": { "type": "string", "enum": ["title", "body"] },
+        "url": { "type": "string", "format": "uri", "pattern": "^https?://" }
+      }
+    },
+    "requirementText": { "type": "string", "minLength": 1, "maxLength": 1000 },
+    "sourceText": { "type": "string", "maxLength": 2000 },
+    "rule": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "status": { "type": "string", "enum": ["passed", "failed", "unknown"] },
+    "explanation": { "type": "string", "minLength": 1, "maxLength": 1000 },
+    "matchedFiles": {
+      "type": "array",
+      "maxItems": 50,
+      "items": { "type": "string", "maxLength": 500 }
+    },
+    "locations": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["file"],
+        "properties": {
+          "file": { "type": "string", "maxLength": 500 },
+          "patchHunk": { "type": "string", "maxLength": 500 },
+          "side": { "type": "string", "enum": ["LEFT", "RIGHT"] },
+          "startLine": { "type": "integer", "minimum": 1 },
+          "endLine": { "type": "integer", "minimum": 1 },
+          "url": { "type": "string", "format": "uri", "pattern": "^https?://" }
+        }
+      }
+    },
+    "observedText": {
+      "type": "array",
+      "maxItems": 100,
+      "items": { "type": "string", "maxLength": 500 }
+    },
+    "evidenceHash": { "$ref": "../common/common.schema.json#/$defs/Hash" },
+    "commitSha": { "type": "string", "pattern": "^[A-Fa-f0-9]{40}$" },
+    "collectedAt": { "$ref": "../common/common.schema.json#/$defs/Timestamp" }
+  }
+}

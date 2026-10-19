@@ -36,6 +36,32 @@
     },
     "coverage": { "$ref": "coverage.schema.json" },
     "evidence": { "$ref": "evidence-summary.schema.json" },
+    "requirementEvidence": {
+      "type": "array",
+      "maxItems": 100,
+      "items": { "$ref": "requirement-evidence.schema.json" }
+    },
+    "checkRunEvidence": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "category", "status", "headSha"],
+        "properties": {
+          "id": { "type": "integer", "minimum": 1 },
+          "name": { "type": "string", "minLength": 1, "maxLength": 256 },
+          "category": {
+            "type": "string",
+            "enum": ["Build", "Typecheck", "Lint", "Tests"]
+          },
+          "status": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "conclusion": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "headSha": { "type": "string", "pattern": "^[A-Fa-f0-9]{40}$" },
+          "url": { "type": "string", "format": "uri", "pattern": "^https?://" }
+        }
+      }
+    },
     "policyDecision": { "$ref": "policy-decision-summary.schema.json" },
     "createdAt": { "$ref": "../common/common.schema.json#/$defs/Timestamp" }
   }

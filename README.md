@@ -11,7 +11,11 @@ verify-agent  verify-sandbox
 
 `verify-agent` owns internal domain models and `verify-sandbox` owns sandbox implementation. This repository defines only stable information exchanged across those boundaries; it contains no application, sandbox, API server, database, provider integration, or generated SDK.
 
-Initial contracts cover common values, verification requests/results, sandbox jobs, provider-neutral agent services, and minimal attestations. OpenAPI remains a placeholder until the public API surface is finalized.
+Initial contracts cover common values, verification requests/results, bounded
+requirement evidence, sandbox jobs, provider-neutral agent services, and
+minimal attestations. Requirement evidence is optional in the verification
+result for backward compatibility. OpenAPI remains a placeholder until the
+public API surface is finalized.
 
 ## Development
 
